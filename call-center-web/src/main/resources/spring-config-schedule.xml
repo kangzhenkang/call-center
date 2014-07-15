@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="scheduleManagerFactory"
+          class="com.callcenter.common.schedule.base.MyTBScheduleManagerFactory"
+          init-method="init">
+        <property name="zkConfig">
+            <map>
+                <entry key="zkConnectString" value="${call-center.zk.address}"/>
+                <entry key="rootPath" value="${call-center.zk.path}"/>
+                <entry key="zkSessionTimeout" value="${call-center.zk.timeout}"/>
+                <entry key="userName" value=""/>
+                <entry key="password" value=""/>
+            </map>
+        </property>
+    </bean>
+
+    <!--select task 操作在startTime 执行，过一个interval之后，这些数据才最终在execute中执行-->
+    <bean id="syncTaskSchedule" class="com.callcenter.service.schedule.SyncTaskSchedule">
+        <property name="baseTaskType.baseTaskType" value="syncTaskSchedule"/>
+        <property name="baseTaskType.dealBeanName" value="syncTaskSchedule"/>
+        <property name="baseTaskType.heartBeatRate" value="6000"/>
+        <property name="baseTaskType.judgeDeadInterval" value="60000"/>
+        <!-- <property name="baseTaskType.sleepTimeNoData" value="60000"/>-->
+        <property name="baseTaskType.sleepTimeInterval" value="30000"/>
+        <!--<property name="baseTaskType.permitRunStartTime" value="0 * * * * ?"/>
+        <property name="baseTaskType.permitRunEndTime" value="20 * * * * ?"/>-->
+        <property name="baseTaskType.executeNumber" value="10000000"/>
+        <property name="baseTaskType.threadNumber" value="5"/>
+        <property name="baseTaskType.taskItems">
+            <list>
+                <value>0:{TYPE=A,KIND=1}</value>
+                <value>1:{TYPE=B,KIND=2}</value>
+            </list>
+        </property>
+        <property name="strategy.strategyName" value="syncTaskSchedule-Strategy"/>
+        <property name="strategy.taskName" value="syncTaskSchedule"/>
+        <property name="strategy.kind" value="Schedule"/>
+        <property name="strategy.numOfSingleServer" value="1"/>
+        <property name="strategy.assignNum" value="10"/>
+        <property name="strategy.IPList">
+            <list>
+                <value>127.0.0.1</value>
+            </list>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,101 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="wms-mrm-web:war exploded">
+    <output-path>$PROJECT_DIR$/../wms-mrm/wms-mrm-web/target/wms-mrm-web</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="wms-mrm-web/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="wms-mrm-web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="wms-mrm-service-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="wms-mrm-service" />
+          </element>
+          <element id="library" level="project" name="Maven: com.gome.wms:wms-common-domain:1.0-SNAPSHOT" />
+          <element id="archive" name="wms-mrm-manager-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="wms-mrm-manager" />
+          </element>
+          <element id="archive" name="wms-mrm-dao-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="wms-mrm-dao" />
+          </element>
+          <element id="archive" name="wms-mrm-domain-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="wms-mrm-domain" />
+          </element>
+          <element id="library" level="project" name="Maven: com.gome.wms:wms-common-util:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:1.7.1" />
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-test:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-dao:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.microsoft.sqlserver:sqlserver-gomebc:3.0" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.0.5" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.0.1" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.0.4" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-gomebc:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.mybatis.generator:mybatis-generator-core:1.3.1" />
+          <element id="archive" name="wms-mrm-client-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="wms-mrm-client" />
+          </element>
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-manager:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-util:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-web:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-ws:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-struts:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-cached:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.opensymphony.quartz:quartz:1.6.1" />
+          <element id="library" level="project" name="Maven: org.apache.axis:axis:1.4" />
+          <element id="library" level="project" name="Maven: commons-discovery:commons-discovery:0.2" />
+          <element id="library" level="project" name="Maven: axis:axis-jaxrpc:1.3" />
+          <element id="library" level="project" name="Maven: axis:axis-saaj:1.3" />
+          <element id="library" level="project" name="Maven: wsdl4j:wsdl4j:1.6.2" />
+          <element id="library" level="project" name="Maven: velocity-tools:velocity-tools:1.2" />
+          <element id="library" level="project" name="Maven: org.apache.velocity:velocity:1.6.3" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.4" />
+          <element id="library" level="project" name="Maven: oro:oro:2.0.8" />
+          <element id="library" level="project" name="Maven: javassist:javassist:3.11.0.GA" />
+          <element id="library" level="project" name="Maven: org.apache.struts:struts2-core:2.2.1" />
+          <element id="library" level="project" name="Maven: org.apache.struts.xwork:xwork-core:2.2.1" />
+          <element id="library" level="project" name="Maven: ognl:ognl:3.0" />
+          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.16" />
+          <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.2.1" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:1.3.2" />
+          <element id="library" level="project" name="Maven: org.apache.struts:struts2-spring-plugin:2.2.1" />
+          <element id="library" level="project" name="Maven: org.apache.struts:struts2-json-plugin:2.2.1" />
+          <element id="library" level="project" name="Maven: com.gome.bk.common:gome-bk-common-hrm:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.gome:saf:1.0.6.3" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-frontend-simple:2.6.1" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-api:2.6.1" />
+          <element id="library" level="project" name="Maven: org.codehaus.woodstox:woodstox-core-asl:4.1.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.woodstox:stax2-api:3.1.1" />
+          <element id="library" level="project" name="Maven: org.apache.ws.xmlschema:xmlschema-core:2.0.2" />
+          <element id="library" level="project" name="Maven: org.apache.geronimo.specs:geronimo-javamail_1.4_spec:1.7.1" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-core:2.6.1" />
+          <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.5" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-bindings-soap:2.6.1" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-databinding-jaxb:2.6.1" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-transports-http:2.2.4" />
+          <element id="library" level="project" name="Maven: com.caucho:hessian:4.0.7" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-frontend-jaxws:2.2.4" />
+          <element id="library" level="project" name="Maven: xml-resolver:xml-resolver:1.2" />
+          <element id="library" level="project" name="Maven: asm:asm:2.2.3" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-bindings-xml:2.2.4" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-ws-addr:2.2.4" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-common-utilities:2.2.4" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.1" />
+          <element id="library" level="project" name="Maven: org.apache.ws.commons.schema:XmlSchema:1.4.5" />
+          <element id="library" level="project" name="Maven: javax.xml.soap:saaj-api:1.3" />
+          <element id="library" level="project" name="Maven: com.sun.xml.messaging.saaj:saaj-impl:1.3.2" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-ws-rm:2.2.4" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-ws-security:2.2.4" />
+          <element id="library" level="project" name="Maven: org.apache.ws.security:wss4j:1.5.8" />
+          <element id="library" level="project" name="Maven: org.apache.santuario:xmlsec:1.4.3" />
+          <element id="library" level="project" name="Maven: xalan:xalan:2.7.1" />
+          <element id="library" level="project" name="Maven: xalan:serializer:2.7.1" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-gomek15:1.43" />
+          <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-ws-policy:2.2.4" />
+          <element id="library" level="project" name="Maven: com.gome.web:metrics:1.4.0.3" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

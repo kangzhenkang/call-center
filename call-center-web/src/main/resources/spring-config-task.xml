@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd" >
+<beans>
+	<bean id="syncTaskJob" class="com.callcenter.service.schedule.SyncTaskJob"/>
+    <bean id="autoExecuteSyncTaskJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="syncTaskJob" />
+        <property name="targetMethod" value="execute"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="autoExecuteSyncTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="autoExecuteSyncTaskJobDetail"/>
+        <property name="cronExpression">
+            <value>0/30 * * * * ?</value> <!-- 每30秒一次 -->
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="jobName" value="同步任务Job" />
+            </map>
+        </property>
+    </bean>
+    <bean id="syncTaskScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="autoExecuteSyncTaskTrigger"/>
+            </list>
+        </property>
+        <property name="autoStartup">
+            <value>false</value>
+        </property>
+    </bean>
+
+    <bean id="heartBeatAndAlarmJob" class="com.callcenter.service.schedule.HeartBeatAndAlarmJob"/>
+    <bean id="autoExecuteHeartBeatAndAlarmJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="heartBeatAndAlarmJob" />
+        <property name="targetMethod" value="execute"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="autoExecuteHeartBeatAndAlarmJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="autoExecuteHeartBeatAndAlarmJobDetail"/>
+        <property name="cronExpression">
+            <value>0 0/3 * * * ?</value> <!-- 每3分钟一次 -->
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="jobName" value="心跳检测和报警Job" />
+            </map>
+        </property>
+    </bean>
+
+    <bean id="heartBeatAndAlarmScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="autoExecuteHeartBeatAndAlarmJobTrigger"/>
+            </list>
+        </property>
+        <property name="autoStartup">
+            <value>false</value>
+        </property>
+    </bean>
+	
+   </beans>

@@ -1,0 +1,84 @@
+<DIV id="navBar" title="同步任务管理">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">同步任务管理</li>
+</DIV>
+<form class="well form-search" name="syncTaskListForm" action="/syncTask" method="POST">
+	<!-- 智能分页与排序 -->
+	<input type="hidden" name="currentPage" value="$!{page.currentPage}"/>
+	<input type="hidden" name="pageSize" value="$!{page.pageSize}"/>
+	<input type="hidden" name="orderField" value="$!{syncTask.orderField}"/>
+	<input type="hidden" name="orderFieldType" value="$!{syncTask.orderFieldType}"/>
+	<!-- 查询条件 -->
+	<input class="span2" type="text" name="id" value="$!{syncTask.id}" placeholder="主键ID"/>
+	<input class="span2" type="text" name="bizType" value="$!{syncTask.bizType}" placeholder="业务类型"/>
+	<input class="span2" type="text" name="callServiceName" value="$!{syncTask.callServiceName}" placeholder="调用业务对象名称"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+	<!-- 新增按钮 -->
+	<div class="btn-group pull-right">
+		<a class="btn" onclick="XUI.window.open('/syncTask/0',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i>新增</a>
+		<a class="btn" onclick="XUI.ajax.post('/syncTask/startOrStopAllTask/1',null,{refresh:true},'您确定要开启吗?')"><i class="icon-ok"></i>开启</a>
+		<a class="btn" onclick="XUI.ajax.post('/syncTask/startOrStopAllTask/0',null,{refresh:true},'您确定要停止吗?')"><i class="icon-remove"></i>停止</a>
+	</div>
+</form>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th #sorting($!{syncTask} "id")>主键ID</th>
+			<th #sorting($!{syncTask} "bizType")>业务类型</th>
+			<th #sorting($!{syncTask} "callServiceName")>调用业务对象名称</th>
+			<th #sorting($!{syncTask} "callMethodName")>调用业务方法名称</th>
+			<th #sorting($!{syncTask} "syncStatus")>同步状态</th>
+			<th #sorting($!{syncTask} "taskType")>任务类型</th>
+			<th #sorting($!{syncTask} "syncTime")>执行时间</th>
+			<th #sorting($!{syncTask} "syncType")>同步类型</th>
+			<th #sorting($!{syncTask} "syncPlan")>执行计划</th>
+			<th #sorting($!{syncTask} "syncCount")>执行次数</th>
+			<th #sorting($!{syncTask} "failCount")>失败次数</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+#foreach(${item} in ${page.result})
+		<tr>
+			<td>$!{item.id}</td>
+			<td>$!{item.bizType}</td>
+			<td>$!{item.callServiceName}</td>
+			<td>$!{item.callMethodName}</td>
+			<td>
+                #if('1'== $!{item.syncStatus})
+                    初始化
+                #elseif('2'== $!{item.syncStatus})
+                    未同步
+                #elseif('3'== $!{item.syncStatus})
+                    同步中
+                #elseif('4'== $!{item.syncStatus})
+                    同步成功
+                #elseif('5'== $!{item.syncStatus})
+                    同步失败
+                #elseif('6'== $!{item.syncStatus})
+                    已经转历史
+                #end
+			</td>
+			<td>$!{item.taskType}</td>
+			<td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{item.syncTime})</td>
+			<td>$!{item.syncType}</td>
+			<td>$!{item.syncPlan}</td>
+			<td>$!{item.syncCount}</td>
+			<td>$!{item.failCount}</td>
+			<td class="textC">
+				<div class="btn-group">
+					<a class="btn btn-mini" onclick="XUI.ajax.delete('/syncTask/${item.id}',null,{refresh:true})"><i class="icon-trash"></i> 删除</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/syncTask/${item.id}',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/syncTask/${item.id}',null,'GET',{title:$(this).text()})"><i class="icon-eye-open"></i> 查看</a>
+					<a class="btn btn-mini" onclick="XUI.ajax.post('/syncTask/resetStatusAndFailCountById/${item.id}',null,{refresh:true},'您确定要重置吗?')"><i class="icon-repeat"></i> 重置</a>
+				</div>
+			</td>
+		</tr>
+#end
+	</tbody>
+</table>
+<!-- 分页栏 -->
+#showPage($!{page})
+

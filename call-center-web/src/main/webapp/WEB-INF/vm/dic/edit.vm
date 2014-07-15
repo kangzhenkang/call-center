@@ -1,0 +1,25 @@
+<form name="dicUpdateForm" action="/dic/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>主键ID:</td>
+			<td><input type="text" name="id" value="$!{dic.id}" placeholder="主键ID" readonly/></td>
+			<td>键:</td>
+			<td><input type="text" name="dicKey" value="$!{dic.dicKey}" placeholder="键"/></td>
+		</tr>
+		<tr>
+			<td>值:</td>
+			<td><input type="text" name="dicValue" value="$!{dic.dicValue}" placeholder="值"/></td>
+			<td>字段类型:</td>
+			<td><input type="text" name="dicType" value="$!{dic.dicType}" placeholder="字段类型"/></td>
+		</tr>
+		<tr>
+			<td>排序:</td>
+			<td><input type="text" name="dicSort" value="$!{dic.dicSort}" placeholder="排序"/></td>
+			<td>描述:</td>
+			<td><input type="text" name="dicDesc" value="$!{dic.dicDesc}" placeholder="描述"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=dicUpdateForm]').submit()">保存更改</button>
+</div>

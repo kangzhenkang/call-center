@@ -1,0 +1,18 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<ul class="nav pull-right">
+			<li><a href=""><i class="icon-eye-open icon-white"></i> 网站前端</a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					<i class="icon-user icon-white"></i> 管理员
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="$!{contextPath}/account"><i class="icon-book"></i> 个人信息</a></li>
+					<li class="divider"></li>
+					<li><a href="$!{contextPath}/logout"><i class="icon-off"></i> 注销登录</a></li>
+				</ul>
+			</li>
+		</ul>
+		#*<a class="brand" href="$!{contextPath}/">testMvvc</a>*#
+	</div>
+</div>

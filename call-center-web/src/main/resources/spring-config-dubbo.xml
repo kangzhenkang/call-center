@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="CallCenterService"/>
+    <dubbo:registry protocol="zookeeper"  address="${call-center.dubbo.zk.url}"/>
+    <dubbo:protocol name="dubbo" port="-1"  />
+    <dubbo:monitor protocol="registry" />
+
+    <!--所有DUBBO服务提供 开始-->
+    <dubbo:service id="dataContentService" interface="com.callcenter.api.DataContentService"
+                 ref="dataRecordService" group="${call-center.dubbo.group}"  timeout="${call-center.dubbo.timeout}"  loadbalance="${call-center.dubbo.loadbalance}" version="${call-center.dubbo.version}"/>
+
+    <!--所有DUBBO服务提供 结束-->
+
+    <!--所有DUBBO服务调用 开始-->
+
+    <dubbo:reference id="mobileContractAPI" interface="com.gome.ftpserver.api.MobileContractAPI"
+                   group="GomeFtpServer-DEV" version="0.0.1" timeout="500000" check="false"/>
+    <!--所有SAF服务调用 结束-->
+
+</beans>
+
+
+
+

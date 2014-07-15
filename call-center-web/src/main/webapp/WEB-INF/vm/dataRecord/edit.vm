@@ -1,0 +1,25 @@
+<form name="dataRecordUpdateForm" action="/dataRecord/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>主键ID:</td>
+			<td><input type="text" name="id" value="$!{dataRecord.id}" placeholder="id" readonly/></td>
+			<td>任务ID:</td>
+			<td><input type="text" name="taskId" value="$!{dataRecord.taskId}" placeholder="taskId"/></td>
+		</tr>
+		<tr>
+			<td>业务类型:</td>
+			<td><input type="text" name="bizType" value="$!{dataRecord.bizType}" placeholder="bizType"/></td>
+			<td>业务数据:</td>
+			<td><input type="text" name="bizData" value="$!{dataRecord.bizData}" placeholder="bizData"/></td>
+		</tr>
+		<tr>
+			<td>业务状态:</td>
+			<td><input type="text" name="bizStatus" value="$!{dataRecord.bizStatus}" placeholder="bizStatus"/></td>
+			<td>排序号:</td>
+			<td><input type="text" name="orderNo" value="$!{dataRecord.orderNo}" placeholder="orderNo"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=dataRecordUpdateForm]').submit()">保存更改</button>
+</div>

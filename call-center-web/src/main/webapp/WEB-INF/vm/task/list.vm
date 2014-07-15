@@ -1,0 +1,106 @@
+<DIV id="navBar" title="任务调用监控页面">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">任务调用监控页面</li>
+</DIV>
+<form class="well form-search" id="taskListForm" name="taskListForm" action="/task" method="POST">
+	<!-- 查询条件 -->
+#*
+	<input class="span2" type="text" name="" value="" placeholder="主键ID"/>
+	<input class="span2" type="text" name="" value="" placeholder="键"/>
+	<input class="span2" type="text" name="" value="" placeholder="值"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+*#
+    <input type="hidden" id="status" name="status" value="" />
+    <input type="hidden" id="jobTask"  name="jobTask" value="" />
+    <button type="submit"  id="freshBtn"  name="freshBtn"  class="btn"><i class="icon-refresh"></i>刷新</button>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th>时间程序名称</th>
+			<th>当前状态</th>
+			<th>操作</th>
+			<th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+            <td>同步任务Job调度</td>
+            <td style="text-align: center;" nowrap>
+                #if($!{syncTaskScheduler}==1)
+                    <font  color="blue">启动</font>
+                #elseif($!{syncTaskScheduler}==0)
+                    <font  color="red">停止</font>
+                #end
+            </td>
+            <td style="text-align: center;" nowrap>
+                #if($!{syncTaskScheduler}==1)
+                    <a href="" onclick="onSubmit('stop','syncTaskScheduler')">停止</a>
+                #elseif($!{syncTaskScheduler}==0)
+                    <a href=""  onclick="onSubmit('start','syncTaskScheduler')">启动</a>
+                #end
+            </td>
+            <td>执行所有注册的任务</td>
+		</tr>
+
+        <tr>
+            <td>监控心跳检测和报警Job调度</td>
+            <td style="text-align: center;" nowrap>
+                #if($!{heartBeatAndAlarmScheduler}==1)
+                    <font  color="blue">启动</font>
+                #elseif($!{heartBeatAndAlarmScheduler}==0)
+                    <font  color="red">停止</font>
+                #end
+            </td>
+            <td style="text-align: center;" nowrap>
+                #if($!{heartBeatAndAlarmScheduler}==1)
+                    <a href="" onclick="onSubmit('stop','heartBeatAndAlarmScheduler')">停止</a>
+                #elseif($!{heartBeatAndAlarmScheduler}==0)
+                    <a href=""  onclick="onSubmit('start','heartBeatAndAlarmScheduler')">启动</a>
+                #end
+            </td>
+            <td>心跳检测同步中并且大于3分钟没有同步的任务和报警失败次数超过5次并发短信、发邮件</td>
+        </tr>
+
+        <tr>
+            <td>所有服务共用</td>
+            <td style="text-align: center;" nowrap>
+                #if($!{startAll}==1)
+                    <font  color="blue">启动</font>
+                #elseif($!{startAll}==0)
+                    <font  color="red">停止</font>
+                #end
+            </td>
+            <td style="text-align: center;" nowrap>
+                #if($!{syncTaskScheduler}==1 && $!{heartBeatAndAlarmScheduler}==1)
+                    <a href="" onclick="onSubmit('stop','stopAll')">停止全部</a>
+                #elseif($!{syncTaskScheduler}==0 && $!{heartBeatAndAlarmScheduler}==0)
+                    <a href=""   onclick="onSubmit('start','startAll')" >启动全部</a>
+                #end
+            </td>
+            <td>用来快速启动所有Job，<font color="red">使用的时候需要谨慎</font></td>
+
+        </tr>
+
+	</tbody>
+</table>
+</form>
+
+<script language="javascript">
+    function onSubmit(status,jobTask) {
+        document.getElementById("status").value = status;
+        document.getElementById("jobTask").value = jobTask;
+        if ('stopAll'==jobTask){
+            if(!confirm("确认停止所有服务吗？")){
+               return false;
+            }
+        }
+        if ('startAll'==jobTask){
+            if(!confirm("确认启动所有服务吗？")){
+                return false;
+            }
+        }
+       document.getElementById("freshBtn").click();
+    }
+</script>

@@ -1,0 +1,19 @@
+<div class="content">
+	<div class="header">
+		<div class="header-info">
+			<span id="serverDate" class="label" data-serverTime="1393571569733">2014-02-28 15:12:49</span>
+		</div>
+		<h1 class="page-title">&nbsp;</h1>
+	</div>
+	<ul class="breadcrumb">&nbsp;</ul>
+	<div class="container-fluid">
+		<div id="vmContainer" class="row-fluid">
+						#parse('index.vm')
+		</div>
+		<footer>
+			<hr>
+			&copy; 2014 #*<a href="" target="_blank"></a>*#
+			<p class="pull-right"><span>Design by <a>Y-Y</a></span></p>
+		</footer>
+	</div>
+</div>

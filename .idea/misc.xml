@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/call-center-web" />
+    <file type="web" url="file://$PROJECT_DIR$/../Gome_AD/10_Coding/autodeploy" />
+    <file type="web" url="file://$PROJECT_DIR$/../jd_AD/10_Coding/autodeploy" />
+    <file type="web" url="file://$PROJECT_DIR$/../las_mpd_web" />
+    <file type="web" url="file://$PROJECT_DIR$/../t/t-web" />
+    <file type="web" url="file://$PROJECT_DIR$/../wms-mrm/wms-mrm-web" />
+  </component>
+  <component name="IdProvider" IDEtalkID="045940EF88D7285F1F73DB6349FD08DA" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../jd_AD/10_Coding/autodeploy/pom.xml" />
+        <option value="$PROJECT_DIR$/../Gome_AD/10_Coding/autodeploy/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/classes" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>
+

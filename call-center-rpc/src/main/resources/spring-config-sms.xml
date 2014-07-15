@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	<context:annotation-config />
+	<!-- 统一工作平台自动生成代码【短信组件】 --> 
+	<bean id="sendUmMsg" class="com.jd.msg.sender.client.proxyClient.SendUmMsg">
+		<property name="loginHandler">
+			<ref bean="loginHandler" />
+		</property>
+	</bean>
+
+
+	<bean id="loginHandler" class="com.jd.msg.sender.client.proxyClient.LoginHandler">
+		<property name="content">
+			<value>${sms.content}</value>
+		</property>
+		<property name="seed">
+			<value>${sms.seed}</value>
+		</property>
+		<property name="qName">
+			<value>${sms.address}</value>
+		</property>
+	</bean>
+</beans>

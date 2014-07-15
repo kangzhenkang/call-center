@@ -1,0 +1,90 @@
+<form name="syncTaskUpdateForm" action="/syncTask/save" method="POST" data-resultType="JSON">
+    <table class="table table-bordered table-striped formLayout m0">
+        <tr>
+            <input type="hidden" name="id" value="$!{syncTask.id}"  readonly/>
+            <td>业务类型:</td>
+            <td><input type="text" id="bizType" name="bizType" value="$!{syncTask.bizType}" placeholder="业务类型"/></td>
+            <td>同步类型:</td>
+            <td>
+                <select id="syncType" name="syncType">
+                    <option value="CYCLE" #if('CYCLE'==$!{syncTask.syncType}) selected="selected" #end >循环执行</option>
+                    <option value="SINGLE" #if('SINGLE'==$!{syncTask.syncType}) selected="selected" #end>执行一次</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>调用业务对象名称:</td>
+            <td><input type="text" id="callServiceName"name="callServiceName" value="$!{syncTask.callServiceName}" placeholder="调用业务对象名称"/></td>
+            <td>调用业务方法名称:</td>
+            <td><input type="text" id="callMethodName"name="callMethodName" value="$!{syncTask.callMethodName}" placeholder="调用业务方法名称"/></td>
+        </tr>
+        <tr>
+            <td>业务状态:</td>
+            <td>
+                <select  id="bizStatus" name="bizStatus">
+                    <option value="F" #if('F'==$!{syncTask.bizStatus}) selected="selected" #end>失败</option>
+                    <option value="S" #if('S'==$!{syncTask.bizStatus}) selected="selected" #end>成功</option>
+                </select>
+            </td>
+            <td>任务类型:</td>
+            <td>
+                <select  id="taskType" name="taskType">
+                    <option value="JOB" #if('JOB'==$!{syncTask.taskType}) selected="selected" #end>JOB</option>
+                    <option value="MQ" #if('MQ'==$!{syncTask.taskType}) selected="selected" #end>MQ</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>执行计划:</td>
+            <td><input type="text" name="syncPlan" value="$!{syncTask.syncPlan}" placeholder="执行计划"/></td>
+            <td>mq发送队列:</td>
+            <td><input type="text" name="mqDestSysId" value="$!{syncTask.mqDestSysId}" placeholder="mq发送队列"/></td>
+        </tr>
+        <tr>
+            <td>同步状态:</td>
+            <td>
+                <select  id="syncStatus " name="syncStatus">
+                    <option value="1" #if('1'==$!{syncTask.syncStatus}) selected="selected" #end>初始化</option>
+                    <option value="2" #if('2'==$!{syncTask.syncStatus}) selected="selected" #end>未同步</option>
+                    <option value="3" #if('3'==$!{syncTask.syncStatus}) selected="selected" #end>同步中</option>
+                    <option value="4" #if('4'==$!{syncTask.syncStatus}) selected="selected" #end>同步成功</option>
+                    <option value="5" #if('5'==$!{syncTask.syncStatus}) selected="selected" #end>同步失败</option>
+                    <option value="6" #if('6'==$!{syncTask.syncStatus}) selected="selected" #end>已经转历史</option>
+                </select>
+            </td>
+            <td>执行序号:</td>
+            <td>
+                <input type="text" name="orderNo" #if($!{syncTask.orderNo}>1) value="$!{syncTask.orderNo}"#else value="1"  #end placeholder="执行序号"/>
+            </td>
+        </tr>
+        <tr>
+            <td>调度协议:</td>
+            <td>
+                <select  id="protocol " name="protocol">
+                    <option value="DUBBO" #if('DUBBO'==$!{syncTask.protocol}) selected="selected" #end>DUBBO</option>
+                    <option value="CXF" #if('CXF'==$!{syncTask.protocol}) selected="selected" #end>CXF</option>
+                    <option value="RESTFUL" #if('RESTFUL'==$!{syncTask.protocol}) selected="selected" #end>RESTFUL</option>
+                    <option value="RESTFUL" #if('HESSIAN'==$!{syncTask.protocol}) selected="selected" #end>HESSIAN</option>
+                </select>
+            </td>
+            <td>同步失败次数:</td>
+            <td><input type="text" name="failCount" #if($!{syncTask.failCount}>0) value="$!{syncTask.failCount}" #else value="0"  #end  placeholder="执行失败次数"/></td>
+        </tr>
+
+        <tr>
+            <td>手机号码:</td>
+            <td><input type="text" name="mobile"  value="$!{syncTask.mobile}"  placeholder="手机号码"/></td>
+            <td>邮箱:</td>
+            <td><input type="text" name="email"  value="$!{syncTask.email}"  placeholder="邮箱"/></td>
+        </tr>
+
+        <tr>
+            <td>业务数据:</td>
+            <td colspan="3"><textarea id="bizDataStr" name="bizDataStr"  style="width:500px; height: 100px; border: 1px solid #d7d7d7;"   placeholder="业务数据">$!{syncTask.bizDataStr}</textarea></td>
+        </tr>
+    </table>
+</form>
+<div class="bottomBar">
+    <button class="btn btn-primary" onclick="$('form[name=syncTaskUpdateForm]').submit()">保存更改</button>
+</div>
+

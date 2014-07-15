@@ -1,0 +1,14 @@
+<form name="timerTaskUpdateForm" action="/task/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+            <input type="hidden" name="id" value="$!{settingTask.id}"/>
+			<td>时间程序名称:</td>
+			<td><input type="text" name="timerTaskName" value="$!{settingTask.dicKey}" placeholder="时间程序名称" readonly/></td>
+			<td>CronExpression:</td>
+			<td><input type="text" name="cronExpression" value="$!{settingTask.dicValue}" placeholder="CronExpression"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=timerTaskUpdateForm]').submit()">保存更改</button>
+</div>

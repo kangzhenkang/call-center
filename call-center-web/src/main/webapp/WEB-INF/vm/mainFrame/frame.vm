@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="" />
+	<META name="viewport" content="width=device-width, initial-scale=1.0">
+	<TITLE>call-center</TITLE>
+	<LINK href="#springUrl('')/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<LINK href="#springUrl('')/css/base.css" rel="stylesheet" type="text/css"/>
+	<LINK href="#springUrl('')/css/page.css" rel="stylesheet" type="text/css"/>
+	<SCRIPT>var contextPath = "#springUrl('')";</SCRIPT>
+</HEAD>
+<BODY class="admin">
+#parse("mainFrame/frame-header.vm")
+#parse("mainFrame/frame-menu.vm")
+#parse("mainFrame/frame-body.vm")
+<SCRIPT src="#springUrl('')/js/common/jquery.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="#springUrl('')/js/common/bootstrap.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="#springUrl('')/js/common/base.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="#springUrl('')/js/common/page.js" type="text/javascript"></SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.callcenter.dao.SyncTaskDao">
+
+	<!-- sync_task 所有查询列 -->
+	<sql id="QUERY_COLUMN_LIST">
+		<![CDATA[id,biz_type AS bizType,call_service_name AS callServiceName,call_method_name AS callMethodName,
+          sync_status AS syncStatus,task_type AS taskType,sync_time AS syncTime,sync_type AS syncType,sync_plan AS syncPlan,
+          sync_count AS syncCount,fail_count AS failCount,order_no AS orderNo,region_no AS regionNo,mq_dest_sysid  AS mqDestSysId,
+          protocol AS protocol,mobile AS mobile, email AS email,error_msg AS errorMsg,
+          create_time AS createTime,update_time AS updateTime,yn]]>
+	</sql>
+
+	<!-- sync_task 查询列来源表-->
+	<sql id="QUERY_FROM_TABLE"><![CDATA[FROM sync_task]]></sql>
+	
+	<!-- 全部条件(更多功能可以通过queryData扩展实现)  -->
+	<sql id="QUERY_WHERE_CLAUSE">
+		<where>
+			<if test="id != null"><![CDATA[AND id = #{id}]]></if>
+			<if test="bizType != null and bizType != ''"><![CDATA[AND biz_type = #{bizType}]]></if>
+			<if test="callServiceName != null and callServiceName != ''"><![CDATA[AND call_service_name = #{callServiceName}]]></if>
+			<if test="callMethodName != null and callMethodName != ''"><![CDATA[AND call_method_name = #{callMethodName}]]></if>
+			<if test="syncStatus != null "><![CDATA[AND sync_status = #{syncStatus}]]></if>
+			<if test="taskType != null and taskType != ''"><![CDATA[AND task_type = #{taskType}]]></if>
+			<if test="syncTime != null and syncTime != ''"><![CDATA[AND sync_time = #{syncTime}]]></if>
+			<if test="syncType != null and syncType != ''"><![CDATA[AND sync_type = #{syncType}]]></if>
+			<if test="syncPlan != null and syncPlan != ''"><![CDATA[AND sync_plan = #{syncPlan}]]></if>
+			<if test="syncCount != null "><![CDATA[AND sync_count = #{syncCount}]]></if>
+			<if test="failCount != null "><![CDATA[AND fail_count = #{failCount}]]></if>
+			<if test="orderNo != null "><![CDATA[AND order_no = #{orderNo}]]></if>
+            <if test="regionNo != null "><![CDATA[AND region_no = #{regionNo}]]></if>
+            <if test="mqDestSysId  != null and mqDestSysId  != ''"><![CDATA[AND mq_dest_sysid  = #{mqDestSysId }]]></if>
+            <if test="protocol != null and protocol != ''"><![CDATA[AND protocol = #{protocol}]]></if>
+            <if test="mobile  != null and mobile  != ''"><![CDATA[AND mobile  = #{mobile}]]></if>
+            <if test="email != null and email != ''"><![CDATA[AND email = #{email}]]></if>
+            <if test="errorMsg  != null and errorMsg  != ''"><![CDATA[AND error_msg  = #{errorMsg }]]></if>
+			<if test="createTime != null and createTime != ''"><![CDATA[AND create_time = #{createTime}]]></if>
+			<if test="updateTime != null and updateTime != ''"><![CDATA[AND update_time = #{updateTime}]]></if>
+			<if test="yn != null"><![CDATA[AND yn = #{yn}]]></if>
+		</where>
+	</sql>
+	
+	<!-- 智能排序与分页 -->
+	<sql id="QUERY_ORDER_LIMIT_CONDITION">
+		<if test="orderField != null and orderField != '' and orderFieldType != null and orderFieldType != ''"><![CDATA[ORDER BY ${orderField} ${orderFieldType}]]></if>
+		<if test="startIndex != null and startIndex &gt;= 0 and pageSize != null and pageSize &gt; 0"><![CDATA[LIMIT #{startIndex},#{pageSize}]]></if>
+	</sql>
+
+	<!-- 更新列字段,只要不为NULL则更新,除开主键列 -->
+	<sql id="UPDATE_COLUMN_SET">
+		<set>
+			<if test="bizType != null and bizType != ''"><![CDATA[biz_type = #{bizType},]]></if>
+			<if test="callServiceName != null and callServiceName != ''"><![CDATA[call_service_name = #{callServiceName},]]></if>
+			<if test="callMethodName != null and callMethodName != ''"><![CDATA[call_method_name = #{callMethodName},]]></if>
+			<if test="syncStatus != null "><![CDATA[sync_status = #{syncStatus},]]></if>
+			<if test="taskType != null and taskType != ''"><![CDATA[task_type = #{taskType},]]></if>
+			<if test="syncTime != null and syncTime != ''"><![CDATA[sync_time = #{syncTime},]]></if>
+			<if test="syncType != null and syncType != ''"><![CDATA[sync_type = #{syncType},]]></if>
+			<if test="syncPlan != null and syncPlan != ''"><![CDATA[sync_plan = #{syncPlan},]]></if>
+			<if test="syncCount != null "><![CDATA[sync_count = #{syncCount},]]></if>
+			<if test="failCount != null "><![CDATA[fail_count = #{failCount},]]></if>
+			<if test="orderNo != null "><![CDATA[order_no = #{orderNo},]]></if>
+            <if test="regionNo != null "><![CDATA[region_no = #{regionNo},]]></if>
+            <if test="mqDestSysId != null and mqDestSysId != ''"><![CDATA[mq_dest_sysid = #{mqDestSysId},]]></if>
+            <if test="protocol != null and protocol != ''"><![CDATA[protocol = #{protocol},]]></if>
+            <if test="mobile != null and mobile != ''"><![CDATA[mobile = #{mobile},]]></if>
+            <if test="email != null and email != ''"><![CDATA[email = #{email},]]></if>
+            <if test="errorMsg != null and errorMsg != ''"><![CDATA[error_msg = #{errorMsg},]]></if>
+			<if test="createTime != null and createTime != ''"><![CDATA[create_time = #{createTime},]]></if>
+			<if test="updateTime != null and updateTime != ''"><![CDATA[update_time = #{updateTime},]]></if>
+			<if test="yn != null "><![CDATA[yn = #{yn},]]></if>
+
+		</set>
+	</sql>
+
+	<!-- 插入sync_task记录 -->
+	<insert id="insertEntry" parameterType="syncTask" useGeneratedKeys="true" keyProperty="id" >
+		<![CDATA[
+			INSERT INTO sync_task (id,biz_type,call_service_name,call_method_name,sync_status,task_type,sync_time,sync_type,
+			sync_plan,sync_count,fail_count,order_no,region_no,mq_dest_sysid,protocol,mobile,error_msg,create_time,update_time,yn)
+			VALUES (#{id},#{bizType},#{callServiceName},#{callMethodName},#{syncStatus},#{taskType},#{syncTime},#{syncType},
+			#{syncPlan},#{syncCount},#{failCount},#{orderNo},#{regionNo},#{mqDestSysId},#{protocol},#{mobile},#{errorMsg},#{createTime},#{updateTime},#{yn})
+		]]>
+	</insert>
+	
+	<!-- 返回插入的编号,在事务开启状态下有效 -->
+	<select id="lastSequence" resultType="int"><![CDATA[SELECT LAST_INSERT_ID() AS id]]></select>
+
+	<!-- 删除记录,主键IN(array) -->
+	<delete id="deleteByArrayKey" parameterType="java.lang.reflect.Array" >
+		<![CDATA[DELETE FROM sync_task WHERE id IN]]>
+		<foreach collection="array" item="id" open="(" separator="," close=")">
+			<![CDATA[#{id}]]>
+		</foreach>
+	</delete>
+
+	<!-- 删除,通过条件 -->
+	<update id="deleteByCondition" parameterType="syncTask" >
+		<![CDATA[DELETE FROM sync_task]]>
+		<include refid="QUERY_WHERE_CLAUSE"/>
+	</update>
+
+	<!-- 修改记录通过主键 -->
+	<update id="updateByKey" parameterType="syncTask" >
+		<![CDATA[UPDATE sync_task]]>
+		<include refid="UPDATE_COLUMN_SET"/>
+        <where>
+            <if test="id != null and id != ''"><![CDATA[AND id = #{id}]]></if>
+            <if test="previousSyncStatus != null and previousSyncStatus != ''"><![CDATA[AND sync_status = #{previousSyncStatus}]]></if>
+        </where>
+	</update>
+
+	<!-- 查询,通过主键IN(array) -->
+	<select id="selectEntryArray" parameterType="java.lang.reflect.Array" resultType="syncTask">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST"/>
+		<include refid="QUERY_FROM_TABLE"/>
+		<![CDATA[WHERE id IN]]>
+		<foreach collection="array" item="id" open="(" separator="," close=")">
+			<![CDATA[#{id}]]>
+		</foreach>
+	</select>
+
+	<!-- 查询,通过条件 -->
+	<select id="selectEntryList" parameterType="syncTask" resultType="syncTask">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST"/>
+		<include refid="QUERY_FROM_TABLE"/>
+		<include refid="QUERY_WHERE_CLAUSE"/>
+		<include refid="QUERY_ORDER_LIMIT_CONDITION"/>
+	</select>
+
+	<!-- 总数查询,通过条件 -->
+	<select id="selectEntryListCount" parameterType="syncTask" resultType="int">
+		<![CDATA[SELECT COUNT(id) AS dataCount]]>
+		<include refid="QUERY_FROM_TABLE"/>
+		<include refid="QUERY_WHERE_CLAUSE"/>
+	</select>
+	
+	<!-- 其它SQL语句 -->
+    <!-- 重置状态为初始化状态、失败次数为0通过主键 -->
+    <update id="resetStatusAndFailCountById" parameterType="long" >
+        <![CDATA[UPDATE sync_task]]>
+        <set>
+            sync_status = 1,
+            fail_count = 0,
+            update_time = now()
+        </set>
+        <where>
+            <if test="_parameter != null"><![CDATA[AND id = #{_parameter}]]></if>
+        </where>
+    </update>
+	
+</mapper>

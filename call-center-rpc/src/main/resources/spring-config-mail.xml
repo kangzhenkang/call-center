@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+	<!-- 统一工作平台自动生成代码【邮件组件】 --> 
+	<bean id="mailClient" class="com.jd.synctask.rpc.client.impl.MailClientImpl" />
+	
+	<bean id="logIn" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+	<bean id="logOut" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+	
+	<!-- 发送邮件 webservice 配置--> 
+	<bean id="sendAuthHeader" class="com.jd.common.ws.AuthHeader">
+        <property name="content" value="${email.content}" />
+		<property name="key" value="AuthenticationHeader" />
+		<property name="qName" value="http://360buy.com/" />
+		<property name="seed" value="${email.seed}" />
+    </bean>
+    
+    <bean id="apiSendHeader" class="com.jd.common.ws.SOAPHeaderIntercepter">
+        <property name="authHeader" ref="sendAuthHeader"/> 
+    </bean>
+    
+    <bean id="sMSWebServiceSoap" class="com.jd.synctask.rpc.mail.SMSWebServiceSoap"
+          factory-bean="sMSWebServiceSoapFactory" factory-method="create"/>
+    
+    <bean id="sMSWebServiceSoapFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.jd.synctask.rpc.mail.SMSWebServiceSoap"/>
+        <property name="address" value="${email.address}"/>
+        <property name="inInterceptors">
+            <list>
+                <ref bean="logIn"/>
+            </list>
+        </property>
+        <property name="outInterceptors">
+            <list>
+                <ref bean="logOut"/>
+                <ref bean="apiSendHeader"/>
+            </list>
+        </property>
+    </bean>
+</beans>
+

@@ -1,0 +1,83 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>编号:</td>
+		<td>$!{syncTask.id}</td>
+		<td>业务类型:</td>
+		<td>$!{syncTask.bizType}</td>
+	</tr>
+	<tr>
+		<td>调用业务对象名称:</td>
+		<td>$!{syncTask.callServiceName}</td>
+		<td>调用业务方法名称:</td>
+		<td>$!{syncTask.callMethodName}</td>
+	</tr>
+	<tr>
+		<td>同步状态:</td>
+		<td>
+            #if('0'== $!{syncTask.syncStatus})
+                初始化
+            #elseif('1'== $!{syncTask.syncStatus})
+                未同步
+            #elseif('2'== $!{syncTask.syncStatus})
+                同步中
+            #elseif('3'== $!{syncTask.syncStatus})
+                同步成功
+            #elseif('4'== $!{syncTask.syncStatus})
+                同步失败
+            #elseif('5'== $!{syncTask.syncStatus})
+                已经转历史
+            #end
+        </td>
+		<td>任务类型:</td>
+		<td>$!{syncTask.taskType}</td>
+	</tr>
+	<tr>
+		<td>执行时间:</td>
+		<td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{syncTask.syncTime}) </td>
+		<td>同步类型:</td>
+		<td>$!{syncTask.syncType}</td>
+	</tr>
+	<tr>
+		<td>执行计划:</td>
+		<td>$!{syncTask.syncPlan}</td>
+		<td>执行次数:</td>
+		<td>$!{syncTask.syncCount}</td>
+	</tr>
+
+	<tr>
+		<td>执行失败次数:</td>
+		<td>$!{syncTask.failCount}</td>
+		<td>排序号:</td>
+		<td>$!{syncTask.orderNo}</td>
+	</tr>
+
+    <tr>
+        <td>手机号码:</td>
+        <td>$!{syncTask.mobile}</td>
+        <td>邮箱:</td>
+        <td>$!{syncTask.email}</td>
+    </tr>
+
+	<tr>
+		<td>创建时间:</td>
+		<td>$dateTool.format("yyyy-MM-dd HH:mm:ss",$!{syncTask.createTime}) </td>
+		<td>更新时间:</td>
+		<td>$dateTool.format("yyyy-MM-dd HH:mm:ss",$!{syncTask.updateTime})</td>
+	</tr>
+	<tr>
+		<td>是否有效:</td>
+		<td>
+            #if('0'== $!{syncTask.yn})
+               无效
+            #elseif('1'== $!{syncTask.yn})
+                有效
+           #end
+       </td>
+		<td>mq发送队列:</td>
+		<td>$!{syncTask.mqDestSysId}</td>
+	</tr>
+    <tr>
+		<td>业务数据:</td>
+		<td colspan="3">$!{syncTask.bizDataStr}</td>
+	</tr>
+</table>

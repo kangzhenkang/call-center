@@ -1,0 +1,73 @@
+<DIV id="navBar" title="动态设置定时任务">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">动态设置定时任务</li>
+</DIV>
+<form class="well form-search" id="timerTaskListForm" name="timerTaskListForm" action="/task/timerTask" method="POST">
+	<!-- 查询条件 -->
+#*
+	<input class="span2" type="text" name="" value="" placeholder="主键ID"/>
+	<input class="span2" type="text" name="" value="" placeholder="键"/>
+	<input class="span2" type="text" name="" value="" placeholder="值"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+*#
+    <input type="hidden" id="status" name="status" value="" />
+    <input type="hidden" id="jobTask"  name="jobTask" value="" />
+    <button type="submit"  id="freshBtn"  name="freshBtn"  class="btn"><i class="icon-refresh"></i>刷新</button>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th>时间程序名称</th>
+			<th>CronExpression</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+    #foreach(${item} in ${settingTaskList})
+		<tr>
+            <td> $!{item.dicKey}</td>
+            <td style="text-align: center;" nowrap>
+               $!{item.dicValue}
+            </td>
+            <td style="text-align: center;" nowrap>
+                <a class="btn btn-mini" onclick="XUI.window.open('/task/ $!{item.dicKey}',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+                <a class="btn btn-mini" onclick="reScheduleJob('$!{item.dicKey}','$!{ $!{item.dicValue}}')"><i class="icon-repeat"></i>重新调度</a>
+            </td>
+		</tr>
+    #end
+
+  #*      <tr>
+            <td>autoExecuteHeartBeatAndAlarmJobTrigger</td>
+            autoExecuteSyncTaskTrigger
+            <td style="text-align: center;" nowrap>
+                $!{autoExecuteHeartBeatAndAlarmJobTrigger}
+            </td>
+            <td style="text-align: center;" nowrap>
+                <a class="btn btn-mini" onclick="XUI.window.open('/task/autoExecuteSyncTaskTrigger',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+                <a class="btn btn-mini" onclick="reScheduleJob('autoExecuteHeartBeatAndAlarmJobTrigger','$!{autoExecuteSyncTaskTrigger}')"><i class="icon-repeat"></i> 重新调度</a>
+            </td>
+        </tr>*#
+
+	</tbody>
+</table>
+</form>
+
+<script language="javascript">
+
+    function reScheduleJob(timerTaskName,cronExpression){
+        $.post("/task/reScheduleJob",
+                {
+                    timerTaskName:timerTaskName,
+                    cronExpression:cronExpression
+                },
+                function(data){
+                    if(data.code=='success'){
+                        alert(data.result);
+                    }else {
+                        alert(data.result);
+                    }
+        });
+    }
+
+</script>

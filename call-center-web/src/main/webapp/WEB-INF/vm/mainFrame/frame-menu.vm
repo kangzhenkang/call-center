@@ -1,0 +1,27 @@
+<div class="sidebar-nav">
+	<a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-home"></i>Home</a>
+	<ul id="dashboard-menu" class="nav nav-list collapse in">
+		<li><a href="$!{contextPath}/">首页</a></li>
+		<li><a href="$!{contextPath}/schedule/index.jsp?manager=true" target="_blank">Schedule调度管理</a></li>
+		<li><a href="http://www.becron.com/" target="_blank">在线Cron表达式生成器</a></li>
+		<li><a href="http://www.kuiyu.net/art-34.html" target="_blank">bootstrap-icon</a></li>
+	</ul>
+
+	<a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-lock"></i>安全控制<span class="label label-info">5</span></a>
+	<ul id="accounts-menu" class="nav nav-list collapse">
+		<li><a href="$!{contextPath}/function">资源管理</a></li>
+		<li><a href="$!{contextPath}/purview">权限管理</a></li>
+		<li class="active"><a href="$!{contextPath}/role">角色管理</a></li>
+		<li><a href="$!{contextPath}/user">用户管理</a></li>
+		<li><a href="$!{contextPath}/dept">组织结构</a></li>
+	</ul>
+	<a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-cog"></i>系统设置</a>
+	<ul id="legal-menu" class="nav nav-list collapse">
+		<li><a href="$!{contextPath}/setting">参数设置</a></li>
+		<li><a href="$!{contextPath}/notice">通知公告</a></li>
+		<li><a href="$!{contextPath}/system/log">系统日志</a></li>
+		<li><a href="$!{contextPath}/system/status">系统状态</a></li>
+	</ul>
+	<a href="$!{contextPath}/help" class="nav-header" ><i class="icon-question-sign"></i>系统帮助</a>
+
+</div>

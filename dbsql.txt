@@ -1,0 +1,76 @@
+drop database if exists call_center;
+create database call_center;
+use call_center;
+CREATE TABLE  sync_task (
+  id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  biz_type varchar(32) DEFAULT NULL COMMENT '业务类型',
+  call_service_name varchar(50) DEFAULT NULL COMMENT '调用业务对象名称',
+  call_method_name varchar(50) DEFAULT NULL COMMENT '调用业务方法名称',
+  sync_status tinyint(4) DEFAULT '0' COMMENT '同步状态 0. 初始化 1. 未同步  2. 同步中 3. 同步成功    4. 同步失败 5：已经转历史，转历史就代表该数据已经不存在于该表中 ',
+  task_type varchar(10) DEFAULT NULL COMMENT '任务类型 JOB ,MQ',
+  sync_time datetime DEFAULT NULL COMMENT '同步时间',
+  sync_type varchar(10) DEFAULT NULL COMMENT '同步类型 CYCLE，SINGLE',
+  sync_plan varchar(50) DEFAULT NULL COMMENT '同步计划',
+  sync_count int DEFAULT '0' COMMENT '同步次数',
+  fail_count tinyint(4) DEFAULT '0' COMMENT '失败次数',
+  order_no tinyint(4) DEFAULT '1' COMMENT '排序号，用来串行执行时的顺序 ， 默认为1',
+  region_no int(11) DEFAULT NULL COMMENT '任务片区，用于任务分配',
+  mq_dest_sysid varchar(50) DEFAULT NULL COMMENT 'mq发送队列',
+  protocol varchar(20) DEFAULT 'DUBBO' COMMENT '调度协议 ，默认为DUBBO,CXF,RESTFUL,HESSIAN',
+  mobile varchar(50) DEFAULT NULL COMMENT '手机号码，报警发短信',
+  email varchar(50) DEFAULT NULL COMMENT '邮箱，报警发邮件',
+  error_msg varchar(200) DEFAULT NULL COMMENT '异常信息，系统之间调用的异常信息',
+  create_time datetime DEFAULT NULL COMMENT '创建时间',
+  update_time datetime DEFAULT NULL COMMENT '更新时间',
+  yn tinyint(4) DEFAULT '1' COMMENT '0：删除 1：有效',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='存储任务数据';
+
+CREATE TABLE data_record (
+  id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  task_id tinyint(4) DEFAULT '0' COMMENT '任务ID，关联任务表（sync_task）的主键',
+  biz_type varchar(32) DEFAULT NULL  COMMENT '业务类型，关联任务表（sync_task）的业务类型',
+  biz_data varchar(2000) DEFAULT NULL COMMENT '业务数据-XML/JSON，和主表对应关系：n-1 （相当于call_service_parameter）',
+  biz_status varchar(20) DEFAULT '' COMMENT '业务状态，log:日志记录，:失败',
+  order_no tinyint(4) DEFAULT '1' COMMENT '排序号，用来串行执行时的顺序 ， 默认为1',
+  create_time datetime DEFAULT NULL COMMENT '创建时间',
+  update_time datetime DEFAULT NULL COMMENT '更新时间',
+  yn tinyint(4) DEFAULT '1' COMMENT '0：删除 1：有效',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='存储所有大数据';
+
+
+CREATE TABLE dic(
+  id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  dic_key varchar(30) DEFAULT NULL COMMENT '键',
+  dic_value varchar(50) DEFAULT NULL COMMENT '值',
+  dic_type varchar(2000) DEFAULT NULL COMMENT '字段类型',
+  dic_sort int  DEFAULT '1' COMMENT '排序',
+  dic_desc  varchar(50) DEFAULT NULL COMMENT '描述',
+  create_time datetime DEFAULT NULL COMMENT '创建时间',
+  update_time datetime DEFAULT NULL COMMENT '更新时间',
+  yn tinyint(4) DEFAULT '1' COMMENT '0：删除 1：有效',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='字典';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

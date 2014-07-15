@@ -1,0 +1,26 @@
+    <table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>主键ID:</td>
+		<td>$!{dataRecord.id}</td>
+		<td>任务ID:</td>
+		<td>$!{dataRecord.taskId}</td>
+	</tr>
+	<tr>
+		<td>业务类型:</td>
+		<td>$!{dataRecord.bizType}</td>
+		<td>业务数据:</td>
+		<td>$!{dataRecord.bizData}</td>
+	</tr>
+	<tr>
+		<td>业务状态:</td>
+		<td>$!{dataRecord.bizStatus}</td>
+		<td>排序号:</td>
+		<td>$!{dataRecord.orderNo}</td>
+	</tr>
+	<tr>
+		<td>创建时间:</td>
+		<td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{dataRecord.createTime})</td>
+		<td>更新时间:</td>
+		<td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{dataRecord.updateTime})</td>
+	</tr>
+</table>

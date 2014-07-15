@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="autodeploy:war">
+    <output-path>$PROJECT_DIR$/../Gome_AD/10_Coding/autodeploy/target</output-path>
+    <root id="archive" name="autodeploy-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="autodeploy:war exploded" />
+    </root>
+  </artifact>
+</component>

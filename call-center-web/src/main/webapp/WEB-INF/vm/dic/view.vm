@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>主键ID:</td>
+		<td>$!{dic.id}</td>
+		<td>键:</td>
+		<td>$!{dic.dicKey}</td>
+	</tr>
+	<tr>
+		<td>值:</td>
+		<td>$!{dic.dicValue}</td>
+		<td>字段类型:</td>
+		<td>$!{dic.dicType}</td>
+	</tr>
+	<tr>
+		<td>排序:</td>
+		<td>$!{dic.dicSort}</td>
+		<td>描述:</td>
+		<td>$!{dic.dicDesc}</td>
+	</tr>
+	<tr>
+		<td>创建时间:</td>
+        <td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{dic.createTime})</td>
+		<td>更新时间:</td>
+        <td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{dic.updateTime})</td>
+	</tr>
+</table>

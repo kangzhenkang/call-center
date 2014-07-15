@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+
+	<!-- 统一工作平台自动生成代码【Redis组件】 --> 
+	<bean id="configClient"
+		class="com.jd.cachecloud.cfs.client.ConfigRESTClientFactoryBean" />
+
+	<bean id="redisClient"
+		class="com.jd.cachecloud.client.ReloadableRedisClientFactoryBean">
+		<property name="configClient" ref="configClient" />
+		<property name="configId" value="${configId}" />
+		<property name="token" value="${token}"></property>
+	</bean>
+</beans>
+

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="call-center-web:war">
+    <output-path>$PROJECT_DIR$/call-center-web/target</output-path>
+    <root id="archive" name="call-center-web-1.0.war">
+      <element id="artifact" artifact-name="call-center-web:war exploded" />
+    </root>
+  </artifact>
+</component>

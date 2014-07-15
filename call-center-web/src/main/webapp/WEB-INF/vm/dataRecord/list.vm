@@ -1,0 +1,60 @@
+<DIV id="navBar" title="数据内容管理">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">数据内容管理</li>
+</DIV>
+<form class="well form-search" name="dataRecordListForm" action="/dataRecord" method="POST">
+	<!-- 智能分页与排序 -->
+	<input type="hidden" name="currentPage" value="$!{page.currentPage}"/>
+	<input type="hidden" name="pageSize" value="$!{page.pageSize}"/>
+	<input type="hidden" name="orderField" value="$!{dataRecord.orderField}"/>
+	<input type="hidden" name="orderFieldType" value="$!{dataRecord.orderFieldType}"/>
+	<!-- 查询条件 -->
+	<input class="span2" type="text" name="id" value="$!{dataRecord.id}" placeholder="主键ID"/>
+	<input class="span2" type="text" name="taskId" value="$!{dataRecord.taskId}" placeholder="任务ID"/>
+	<input class="span2" type="text" name="bizType" value="$!{dataRecord.bizType}" placeholder="业务类型"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+	<!-- 新增按钮 -->
+	#*<div class="btn-group pull-right">
+		<a class="btn" onclick="XUI.window.open('/dataRecord/0',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i>新增</a>
+	</div>*#
+</form>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th #sorting($!{dataRecord} "id")>主键ID</th>
+			<th #sorting($!{dataRecord} "taskId")>任务ID</th>
+			<th #sorting($!{dataRecord} "bizType")>业务类型</th>
+			<th #sorting($!{dataRecord} "bizData")>业务数据</th>
+			<th #sorting($!{dataRecord} "bizStatus")>业务状态</th>
+			<th #sorting($!{dataRecord} "orderNo")>排序号</th>
+			<th #sorting($!{dataRecord} "createTime")>创建时间</th>
+			<th #sorting($!{dataRecord} "updateTime")>更新时间</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+#foreach(${item} in ${page.result})
+		<tr>
+			<td>$!{item.id}</td>
+			<td>$!{item.taskId}</td>
+			<td>$!{item.bizType}</td>
+			<td>$!{item.bizData}</td>
+			<td>$!{item.bizStatus}</td>
+			<td>$!{item.orderNo}</td>
+			<td>$dateTool.format("yyyy-MM-dd HH:mm:ss",$!{item.createTime})</td>
+			<td>$dateTool.format("yyyy-MM-dd HH:mm:ss",$!{item.updateTime})</td>
+			<td class="textC">
+				<div class="btn-group">
+					<a class="btn btn-mini" onclick="XUI.ajax.delete('/dataRecord/${item.id}',null,{refresh:true})"><i class="icon-trash"></i> 删除</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/dataRecord/${item.id}',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/dataRecord/${item.id}',null,'GET',{title:$(this).text()})"><i class="icon-eye-open"></i> 查看</a>
+				</div>
+			</td>
+		</tr>
+#end
+	</tbody>
+</table>
+<!-- 分页栏 -->
+#showPage($!{page})

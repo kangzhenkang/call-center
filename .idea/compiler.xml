@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="autodeploy-common" />
+        <module name="autodeploy-dao" />
+        <module name="autodeploy-domain" />
+        <module name="autodeploy-rpc" />
+        <module name="autodeploy-service" />
+        <module name="autodeploy-web" />
+        <module name="code-generator" />
+        <module name="codegenerator" />
+        <module name="t-common" />
+        <module name="t-dao" />
+        <module name="t-domain" />
+        <module name="t-rpc" />
+        <module name="t-service" />
+        <module name="t-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="autodeploy" target="1.6" />
+      <module name="autodeploy-common" target="1.6" />
+      <module name="autodeploy-dao" target="1.6" />
+      <module name="autodeploy-domain" target="1.6" />
+      <module name="autodeploy-rpc" target="1.6" />
+      <module name="autodeploy-service" target="1.6" />
+      <module name="autodeploy-web" target="1.6" />
+      <module name="call-center-rpc" target="1.6" />
+      <module name="las_mpd_web" target="1.5" />
+      <module name="rocketmq-all" target="1.6" />
+      <module name="rocketmq-broker" target="1.6" />
+      <module name="rocketmq-client" target="1.6" />
+      <module name="rocketmq-common" target="1.6" />
+      <module name="rocketmq-example" target="1.6" />
+      <module name="rocketmq-namesrv" target="1.6" />
+      <module name="rocketmq-qatest" target="1.6" />
+      <module name="rocketmq-remoting" target="1.6" />
+      <module name="rocketmq-research" target="1.6" />
+      <module name="rocketmq-store" target="1.6" />
+      <module name="rocketmq-tools" target="1.6" />
+      <module name="t-rpc" target="1.6" />
+      <module name="tbschedule" target="1.6" />
+      <module name="wms-mrm" target="1.5" />
+      <module name="wms-mrm-client" target="1.5" />
+      <module name="wms-mrm-dao" target="1.5" />
+      <module name="wms-mrm-domain" target="1.5" />
+      <module name="wms-mrm-manager" target="1.5" />
+      <module name="wms-mrm-service" target="1.5" />
+      <module name="wms-mrm-web" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
+
